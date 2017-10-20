@@ -104,6 +104,6 @@ public class Main extends JavaPlugin implements Listener {
     			}catch (IOException localIOException) {}
     		}
           }
-        }, 20);
+        }, 10);
 	}
 }

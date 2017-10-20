@@ -7,10 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -24,7 +24,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 
 public class HoloStorage {
 	
-	private final ArrayList<Hologram> PROTECTED_HOLOS = new ArrayList();
+	private final List<Hologram> PROTECTED_HOLOS = new ArrayList();
 	  
 	  public void add(Hologram s)
 	  {
@@ -65,6 +65,15 @@ public class HoloStorage {
 	      out.newLine();
 	      out.write("Text:" + b);
 	      out.newLine();
+	      out.write("LineNumbers:" + holo.getLinesBelow().size());
+	      out.newLine();
+	      for(Hologram hz : holo.getLinesBelow())
+	      {
+		      String g = hz.getText();
+		      String f = g.replaceAll("§", "COLORCODE");
+	    	  out.write("Line:" + f);
+		      out.newLine(); 
+	      }
 	    }
 	    out.close();
 	  }
@@ -88,6 +97,14 @@ public class HoloStorage {
 	        int y = Integer.parseInt(reader.readLine().split(":")[1]);
 	        int z = Integer.parseInt(reader.readLine().split(":")[1]);
 	        String f = reader.readLine().split(":")[1];
+	        List<String> linesText = new ArrayList();
+	        int lines = Integer.parseInt(reader.readLine().split(":")[1]);
+	        for(int i = 0;i<lines;i++)
+	        {
+	        	String color = reader.readLine().split(":")[1];
+	        	String defColor = color.replaceAll("COLORCODE", "§");
+	        	linesText.add(defColor);
+	        }
 	        String zDesc = f.replaceAll("COLORCODE", "§");
 	        Location loc = new Location(Bukkit.getWorld(world),x,y,z);
 	        Hologram h = HologramAPI.createHologram(loc,zDesc);
@@ -100,6 +117,62 @@ public class HoloStorage {
                 }
             });
 	        h.spawn();
+	        //Worst for cycle i've ever done but that's the only solution without editing the API.
+	        for(int i=0;i<lines;i++)
+	        {
+	        	if(i==0)
+	        	{
+	        		h.addLineBelow(linesText.get(0));
+	        	}
+	        	else if(i==1)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1));
+	        	}
+	        	else if(i==2)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2));
+	        	}
+	        	else if(i==3)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3));
+	        	}
+	        	else if(i==4)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4));
+	        	}
+	        	else if(i==5)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5));
+	        	}
+	        	else if(i==6)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6));
+	        	}
+	        	else if(i==7)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7));
+	        	}	
+	        	else if(i==8)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7)).addLineBelow(linesText.get(8));
+	        	}	
+	        	else if(i==9)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7)).addLineBelow(linesText.get(8)).addLineBelow(linesText.get(9));
+	        	}	
+	        	else if(i==10)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7)).addLineBelow(linesText.get(8)).addLineBelow(linesText.get(9)).addLineBelow(linesText.get(10));
+	        	}
+	        	else if(i==11)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7)).addLineBelow(linesText.get(8)).addLineBelow(linesText.get(9)).addLineBelow(linesText.get(10)).addLineBelow(linesText.get(11));
+	        	}	
+	        	else if(i==12)
+	        	{
+	        		h.addLineBelow(linesText.get(0)).addLineBelow(linesText.get(1)).addLineBelow(linesText.get(2)).addLineBelow(linesText.get(3)).addLineBelow(linesText.get(4)).addLineBelow(linesText.get(5)).addLineBelow(linesText.get(6)).addLineBelow(linesText.get(7)).addLineBelow(linesText.get(8)).addLineBelow(linesText.get(9)).addLineBelow(linesText.get(10)).addLineBelow(linesText.get(11)).addLineBelow(linesText.get(12));
+	        	}	
+	        }
 	        add(h);
 			Main.getHolos().put(Name, h);
 	      }
