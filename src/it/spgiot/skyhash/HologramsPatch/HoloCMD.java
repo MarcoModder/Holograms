@@ -20,6 +20,11 @@ public class HoloCMD implements CommandExecutor {
 			return true;
 		}
 		Player p = (Player) sender;
+		if(!p.hasPermission("holos.admin"))
+		{
+			p.sendMessage("§cNot enough permissions!");
+			return true;
+		}
 		if(args.length == 0)
 		{
 			p.sendMessage("§2Holograms 1.8 Patch made by SkyHash");
