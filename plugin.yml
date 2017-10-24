@@ -1,0 +1,9 @@
+name: Holos
+version: 1.0.3
+author: SkyHash
+description: Custom Holograms Patch.
+main: it.spgiot.skyhash.HologramsPatch.Main
+
+commands:
+  hd:
+    usage: /<command>
